@@ -34,11 +34,11 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
-            process_post(&gerenciadorDeEventos, PROCESS_EVENT_MSG, (void *)"BATIMENTO_BAIXO");
+            process_post(&evento, PROCESS_EVENT_MSG, (void *)"BATIMENTO_BAIXO");
         } else if (batimento > 90) {
             sprintf(msg, "Alerta, batimento cardiaco alto: %d\n", batimento);
             printf("%s", msg);
-            process_post(&gerenciadorDeEventos, PROCESS_EVENT_MSG, (void *)"BATIMENTO_ALTO");
+            process_post(&evento, PROCESS_EVENT_MSG, (void *)"BATIMENTO_ALTO");
         } else {
             sprintf(msg, "Batimento cardiaco normal: %d\n", batimento);
             printf("%s", msg);
@@ -67,7 +67,7 @@ PROCESS_THREAD(oxigenio, ev, data)
         if (oxigenio < 90) {
             sprintf(msg, "Alerta, saturacao de oxigenio baixa: %d%%\n", oxigenio);
             printf("%s", msg);
-            process_post(&gerenciadorDeEventos, PROCESS_EVENT_MSG, (void *)"OXIGENIO_BAIXO");
+            process_post(&evento, PROCESS_EVENT_MSG, (void *)"OXIGENIO_BAIXO");
         } else {
             sprintf(msg, "Saturação do oxigenio normal: %d%%\n", oxigenio);
             printf("%s", msg);
@@ -96,11 +96,11 @@ PROCESS_THREAD(temperatura, ev, data)
         if (temperatura < 35) {
             sprintf(msg, "Alerta, Hipotermia: %d\n", temperatura); 
             printf("%s", msg);
-            process_post(&gerenciadorDeEventos, PROCESS_EVENT_MSG, (void *) "HIPOTERMIA");
+            process_post(&evento, PROCESS_EVENT_MSG, (void *) "HIPOTERMIA");
         } else if (temperatura > 39) {
             sprintf(msg, "Alerta, Febre: %d\n", temperatura);
             printf("%s", msg);
-            process_post(&gerenciadorDeEventos, PROCESS_EVENT_MSG, (void *) "FEBRE");
+            process_post(&evento, PROCESS_EVENT_MSG, (void *) "FEBRE");
         } else {
             sprintf(msg, "Temperatura normal: %d\n", temperatura);
             printf("%s", msg);
