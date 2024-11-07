@@ -5,11 +5,11 @@
 #define BATIMENTO_MIN 20
 #define BATIMENTO_MAX 140
 
-#define OXIGENIO_MAX 100;
-#define OXIGENIO_MIN 80;
+#define OXIGENIO_MAX 100
+#define OXIGENIO_MIN 80
 
-#define TEMPERATURA_MAX 41;
-#define TEMPERATURA_MIN 34;
+#define TEMPERATURA_MAX 41
+#define TEMPERATURA_MIN 34
 
 PROCESS(batimentoCardiaco, "Batimento Cardiaco");
 PROCESS(oxigenio, "Saturação do Oxigenio");
@@ -30,7 +30,7 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
 
     while(true) {
 
-        batimento =   random_rand() % (BATIMENTO_MIN - BATIMENTO_MAX) + BATIMENTO_MAX;
+        batimento =   (random_rand() % (BATIMENTO_MIN - BATIMENTO_MAX)) + BATIMENTO_MAX;
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
@@ -63,7 +63,7 @@ PROCESS_THREAD(oxigenio, ev, data)
 
     while(true) {
 
-        oxigenio =   random_rand() % (OXIGENIO_MAX - OXIGENIO_MIN) + OXIGENIO_MIN;
+        oxigenio =   (random_rand() % (OXIGENIO_MAX - OXIGENIO_MIN)) + OXIGENIO_MIN;
         if (oxigenio < 90) {
             sprintf(msg, "Alerta, saturacao de oxigenio baixa: %d%%\n", oxigenio);
             printf("%s", msg);
@@ -92,7 +92,7 @@ PROCESS_THREAD(temperatura, ev, data)
 
     while(true) {
 
-        temperatura =   random_rand() % (TEMPERATURA_MAX - TEMPERATURA_MIN) + TEMPERATURA_MIN; 
+        temperatura =   (random_rand() % (TEMPERATURA_MAX - TEMPERATURA_MIN)) + TEMPERATURA_MIN; 
         if (temperatura < 35) {
             sprintf(msg, "Alerta, Hipotermia: %d\n", temperatura); 
             printf("%s", msg);
@@ -123,17 +123,18 @@ PROCESS_THREAD(evento, ev, data)
         if (ev == PROCESS_EVENT_MSG) {
             char *eventoAlerta = (char *)data;
 
-            if (eventoAlerta == "BATIMENTO_BAIXO") {
+            if (strcmp(eventoAlerta, "BATIMENTO_BAIXO") == 0) {
                 printf("ALERTA: Batimento cardíaco abaixo do normal!\n");
-            } else if (eventoAlerta == "BATIMENTO_ALTO") {
+            } else if (strcmp(eventoAlerta, "BATIMENTO_ALTO") == 0) {
                 printf("ALERTA: Batimento cardíaco acima do normal!\n");
-            } else if (eventoAlerta == "OXIGENIO_BAIXO") {
+            } else if (strcmp(eventoAlerta, "OXIGENIO_BAIXO") == 0) {
                 printf("ALERTA: Saturação de oxigênio abaixo do normal!\n");
-            } else if (eventoAlerta == "HIPOTERMIA") {
+            } else if (strcmp(eventoAlerta, "HIPOTERMIA") == 0) {
                 printf("ALERTA: Temperatura corporal abaixo do normal!\n");
-            } else if (eventoAlerta == "FEBRE") {
+            } else if (strcmp(eventoAlerta, "FEBRE") == 0) {
                 printf("ALERTA: Temperatura corporal acima do normal!\n");
             }
+
         }
     }
 
