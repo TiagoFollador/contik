@@ -14,15 +14,15 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
     PROCESS_BEGIN();
 
     etimer_set(&timer, CLOCK_SECOND * 3);
+
     int batimento = 0;
     int max = 140;
     int min = 20;
     static char msg[50];
 
-    while(1) {
-        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+    while(true) {
 
-        batimento =  (random_rand() % (max - min + 1)) + min;
+        batimento =   random_rand() % (max - min) + min;
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
@@ -34,6 +34,7 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
             printf("%s", msg);
         }
 
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
     }
 
@@ -51,10 +52,9 @@ PROCESS_THREAD(oxigenio, ev, data)
     int min = 80;
     static char msg[50];
 
-    while(1) {
-        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+    while(true) {
 
-        oxigenio =  (random_rand() % (max - min + 1)) + min;
+        oxigenio =   random_rand() % (max - min) + min;
         if (oxigenio < 90) {
             sprintf(msg, "Alerta, saturacao de oxigenio baixa: %d%%\n", oxigenio);
             printf("%s", msg);
@@ -63,6 +63,7 @@ PROCESS_THREAD(oxigenio, ev, data)
             printf("%s", msg);
         }
 
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
     }
 
@@ -80,10 +81,9 @@ PROCESS_THREAD(temperatura, ev, data)
     int min = 34;
     static char msg[50];
 
-    while(1) {
-        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
+    while(true) {
 
-        temperatura =  (random_rand() % (max - min + 1)) + min; 
+        temperatura =   random_rand() % (max - min) + min; 
         if (temperatura < 35) {
             sprintf(msg, "Alerta, Hipotermia: %d\n", temperatura);
             printf("%s", msg);
@@ -95,6 +95,7 @@ PROCESS_THREAD(temperatura, ev, data)
             printf("%s", msg);
         }
 
+        PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
     }
 
