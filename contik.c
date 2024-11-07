@@ -31,7 +31,7 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
 
     while(true) {
 
-        batimento =   (random_rand() % (BATIMENTO_MIN - BATIMENTO_MAX)) + BATIMENTO_MAX;
+        batimento =   (random_rand() % (BATIMENTO_MAX - BATIMENTO_MIN)) + BATIMENTO_MIN;
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
