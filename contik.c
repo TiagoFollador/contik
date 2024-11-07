@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <random.h>
 
+#define MIN_VAL 20
+#define MAX_VAL 140
+
 PROCESS(batimentoCardiaco, "Batimento Cardiaco");
 PROCESS(oxigenio, "Saturação do Oxigenio");
 PROCESS(temperatura, "Temperatura Corporal");
@@ -22,7 +25,7 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
 
     while(true) {
 
-        batimento =   random_rand() % (max - min) + min;
+        batimento =   random_rand() % (MAX_VAL - MIN_VAL) + MIN_VAL;
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
