@@ -121,17 +121,17 @@ PROCESS_THREAD(evento, ev, data)
     while(true) {
         PROCESS_WAIT_EVENT();
         if (ev == PROCESS_EVENT_MSG) {
-            char *evento = (char *)data;
+            char *eventoAlerta = (char *)data;
 
-            if (evento == "BATIMENTO_BAIXO") {
+            if (eventoAlerta == "BATIMENTO_BAIXO") {
                 printf("ALERTA: Batimento cardíaco abaixo do normal!\n");
-            } else if (evento == "BATIMENTO_ALTO") {
+            } else if (eventoAlerta == "BATIMENTO_ALTO") {
                 printf("ALERTA: Batimento cardíaco acima do normal!\n");
-            } else if (evento == "OXIGENIO_BAIXO") {
+            } else if (eventoAlerta == "OXIGENIO_BAIXO") {
                 printf("ALERTA: Saturação de oxigênio abaixo do normal!\n");
-            } else if (evento == "HIPOTERMIA") {
+            } else if (eventoAlerta == "HIPOTERMIA") {
                 printf("ALERTA: Temperatura corporal abaixo do normal!\n");
-            } else if (evento == "FEBRE") {
+            } else if (eventoAlerta == "FEBRE") {
                 printf("ALERTA: Temperatura corporal acima do normal!\n");
             }
         }
