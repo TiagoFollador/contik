@@ -34,16 +34,14 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
     while(true) {
 
         batimento =   (random_rand() % (BATIMENTO_MAX - BATIMENTO_MIN)) + BATIMENTO_MIN;
+        sprintf(msg, "Batimento cardiaco: %d\n", batimento);
+        printf("%s", msg);
+
         if (batimento < 50) {
-            printf("%s", msg);
             process_post(&evento, PROCESS_EVENT_MSG, (void *)"BATIMENTO_BAIXO");
         } else if (batimento > 90) {
-            printf("%s", msg);
             process_post(&evento, PROCESS_EVENT_MSG, (void *)"BATIMENTO_ALTO");
-        } else {
-            printf("%s", msg);
         }
-        sprintf(msg, "Batimento cardiaco: %d\n", batimento);
 
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
@@ -66,13 +64,12 @@ PROCESS_THREAD(oxigenio, ev, data)
     while(true) {
 
         oxigenio =   (random_rand() % (OXIGENIO_MAX - OXIGENIO_MIN)) + OXIGENIO_MIN;
+        sprintf(msg, "Saturação do oxigenio: %d%%\n", oxigenio);
+        printf("%s", msg);
+
         if (oxigenio < 90) {
-            printf("%s", msg);
             process_post(&evento, PROCESS_EVENT_MSG, (void *)"OXIGENIO_BAIXO");
-        } else {
-            printf("%s", msg);
         }
-        sprintf(msg, "Saturação do oxigenio normal: %d%%\n", oxigenio);
 
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
@@ -95,16 +92,14 @@ PROCESS_THREAD(temperatura, ev, data)
     while(true) {
 
         temperatura =   (random_rand() % (TEMPERATURA_MAX - TEMPERATURA_MIN)) + TEMPERATURA_MIN; 
+        sprintf(msg, "Temperatura: %d\n", temperatura);
+        printf("%s", msg);
+
         if (temperatura < 35) {
-            printf("%s", msg);
             process_post(&evento, PROCESS_EVENT_MSG, (void *) "HIPOTERMIA");
         } else if (temperatura > 39) {
-            printf("%s", msg);
             process_post(&evento, PROCESS_EVENT_MSG, (void *) "FEBRE");
-        } else {
-            printf("%s", msg);
         }
-        sprintf(msg, "Temperatura: %d\n", temperatura);
 
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
         etimer_reset(&timer);
