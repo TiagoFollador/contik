@@ -3,6 +3,8 @@
 #include <random.h>
 #include <string.h>
 
+
+// Minimos e maximos para gerar os valores
 #define BATIMENTO_MIN 20
 #define BATIMENTO_MAX 140
 
@@ -12,15 +14,16 @@
 #define TEMPERATURA_MAX 41
 #define TEMPERATURA_MIN 34
 
+// definindo os processos
 PROCESS(batimentoCardiaco, "Batimento Cardiaco");
 PROCESS(oxigenio, "Saturação do Oxigenio");
 PROCESS(temperatura, "Temperatura Corporal");
 PROCESS(evento, "Evento");
 
+// inicializacao automatica dos processos
 AUTOSTART_PROCESSES(&batimentoCardiaco, &oxigenio, &temperatura, &evento);
 
 // Thread responsavel por gerar o batimento cardiaco
-
 PROCESS_THREAD(batimentoCardiaco, ev, data) 
 {
     static struct etimer timer;
