@@ -19,8 +19,6 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
     etimer_set(&timer, CLOCK_SECOND * 3);
 
     int batimento = 0;
-    int max = 140;
-    int min = 20;
     static char msg[50];
 
     while(true) {
