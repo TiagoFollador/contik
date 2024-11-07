@@ -1,6 +1,7 @@
 #include "contiki.h"
 #include <stdio.h>
 #include <random.h>
+#include <string.h>
 
 #define BATIMENTO_MIN 20
 #define BATIMENTO_MAX 140
