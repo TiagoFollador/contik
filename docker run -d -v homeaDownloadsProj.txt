@@ -1,0 +1,6 @@
+docker run -d -v /home/a/Downloads/ProjetosContiki:/contiki --name contiki contiker/contiki-ng
+sh -c "tail -f > /dev/null"
+
+docker exec -it contiki /bin/bash
+git clone https://github.com/contiki-ng/contiki-ng.git
+cp -R /contiki/ PUCPR
