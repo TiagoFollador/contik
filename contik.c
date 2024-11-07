@@ -22,7 +22,7 @@ PROCESS_THREAD(batimentoCardiaco, ev, data)
     while(1) {
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
 
-        batimento =  (random_rand() % (max - min + 1)) + min
+        batimento =  (random_rand() % (max - min + 1)) + min;
         if (batimento < 50) {
             sprintf(msg, "Alerta, batimento cardiaco baixo: %d\n", batimento);
             printf("%s", msg);
@@ -54,7 +54,7 @@ PROCESS_THREAD(oxigenio, ev, data)
     while(1) {
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
 
-        oxigenio =  (random_rand() % (max - min + 1)) + min
+        oxigenio =  (random_rand() % (max - min + 1)) + min;
         if (oxigenio < 90) {
             sprintf(msg, "Alerta, saturacao de oxigenio baixa: %d%%\n", oxigenio);
             printf("%s", msg);
